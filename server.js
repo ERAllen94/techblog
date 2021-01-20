@@ -20,7 +20,7 @@ const sess = {
     cookie: {},
     resave: false,
     saveUnitialized: true,
-    store: newSequelizeStore({
+    store: new SequelizeStore({
         db: sequelize
     })
 }
