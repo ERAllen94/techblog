@@ -2,6 +2,7 @@ var timmeoutID;
 var warningID;
 
 async function logout() {
+    console.log('log out was clicked')
     const response = await fetch('/api/users/logout', {
         method: 'post',
         headers: {
@@ -9,7 +10,7 @@ async function logout() {
         }
     });
 if (response.ok) {
-    document.location.replace('/');
+    document.location.replace('/login');
 } else {
     alert(respone.statusText);
 }
@@ -31,11 +32,11 @@ function setup() {
 setup();
 
 function startTimer() {
-    timmeoutID = window.setTimeout(goInactive, 3600000)
+    timeoutID = window.setTimeout(goInactive, 3600000)
     warningID = setTimeout(function () {alert("You will be logged out in five minutes due to inactivity") }, 3300000)
 }
 
-function reset(e) {
+function resetTimer(e) {
     window.clearTimeout(timeoutID);
     window.clearTimeout(warningID);
     startTimer()
@@ -48,4 +49,4 @@ document.querySelector('#logout').addEventListener('click',logout);
 
 
 
-document.querySelector('#logout').addEventListener('click', logout);
+// document.querySelector('#logout').addEventListener('click', logout);

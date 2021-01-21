@@ -4,18 +4,18 @@ async function signupFormHandler(event) {
 const username = document.querySelector('#username-signup').value.trim();
 const email = document.querySelector('#email-signup').value.trim();
 const password = document.querySelector('#password-signup').value.trim();
-console.log(username,email,password);
+console.log(username,email,password,'hi');
 if (username && email && password) {
-    const response = await fetch('/api/users/', {
+    const response = await fetch('/api/users', {
         method: 'post',
         body: JSON.stringify({
             username,
-         email,
-         password   
+            email,
+            password   
         }),
         headers: { 'Content-Type': 'application/json'}
     });
-
+    console.log('hello',response)
     if (response.ok) {
         const login = await fetch('/api/users/login',{
             method: 'post',
@@ -29,7 +29,9 @@ if (username && email && password) {
         if (login.ok) {
             setTimeout(() => {document.location.replace('/dashboard') }, 200);
         }
+console.log('sup')
     } else {
+        console.log('i hit the else')
         alert(response.statusText);
     }
 }
@@ -41,18 +43,18 @@ async function loginFormHandler(event) {
 
     const username = document.querySelector('#username-login').value.trim();
     const password = document.querySelector('#password-login').value.trim();
-
     if (username && password) {
-        const response = await fetch ('/api/users/login', {
+        const login = await fetch('/api/users/login',{
             method: 'post',
             body: JSON.stringify({
                 'username': username,
                 'password': password
+
             }),
-            headers: { 'Content-Type': 'application/json '}
+            headers: { 'Content-Type': 'application/json'}
         });
-        if (response.ok) {
-            setTimeout(() => { document.location.replace('/dashboard') }, 200);
+        if (login.ok) {
+            setTimeout(() => {document.location.replace('/dashboard') }, 200);
         } else{
             alert(response.statusText);
         }

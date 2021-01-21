@@ -83,6 +83,7 @@ router.post('/login', (req, res) => {
         }
     })
     .then(userData => {
+        console.log(userData,'userdata')
         if (!userData) {
             res.status(400).json({message: 'No user found with this username'});
             return;
@@ -110,7 +111,8 @@ router.post('/login', (req, res) => {
 
 
 router.post('/logout',(req,res) =>{
-    if (req.session.loggedIn) {
+    console.log(req.session.loggedIn,'this is it')
+    if (true) {
         req.session.destroy(()=> {
             res.status(204).end();
         });
