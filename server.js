@@ -15,17 +15,13 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-const sess = {
-    secret: 'Shhh its a secret',
-    cookie: {},
-    resave: false,
-    saveUnitialized: true,
-    store: new SequelizeStore({
-        db: sequelize
-    })
-}
+app.use(session({secret: 'secretpasscode',cookie: { maxAge: 300000 }, 
+rolling: true,   
+ resave: false,   
+  saveUninitialized: true,    
+  store: new SequelizeStore({db: sequelize})}));
 
-app.use(session(sess));
+// app.use(session(sess));
 app.use(routes);
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');

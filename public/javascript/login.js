@@ -2,11 +2,11 @@ async function signupFormHandler(event) {
     event.preventDefault();
 
 const username = document.querySelector('#username-signup').value.trim();
-const email = documet.querySelector('#email-signup').value.trim();
+const email = document.querySelector('#email-signup').value.trim();
 const password = document.querySelector('#password-signup').value.trim();
-
+console.log(username,email,password);
 if (username && email && password) {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/api/users/', {
         method: 'post',
         body: JSON.stringify({
             username,
@@ -27,10 +27,10 @@ if (username && email && password) {
             headers: { 'Content-Type': 'application/json'}
         });
         if (login.ok) {
-            setTimeout(() => {documet.location.replace('/dashboard') }, 200);
+            setTimeout(() => {document.location.replace('/dashboard') }, 200);
         }
     } else {
-        alert(respone.statusText);
+        alert(response.statusText);
     }
 }
 

@@ -30,15 +30,33 @@ router.get('/', (req, res) => {
     })
     .then(data => {
         const posts = data.map(post => post.get ({ plain: true}));
-        res.render('homepage', {
-            posts,
-            loggedIn: req.session.loggedIn
-        });
+        // res.render('homepage', {
+        //     posts,
+        //     loggedIn: req.session.loggedIn
+        // });
+        res.render('homepage')
     })
     .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
+});
+
+router.get('/login', (req, res) => {
+    if (req.session.isLoggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('login');
+});
+
+// Render Signout page - /signup
+router.get('/signup', (req, res) => {
+    if (req.session.isLoggedIn) {
+        res.redirect('/');
+        return;
+    }
+    res.render('signup');
 });
 
 router.get('/post/:id', (req,res) => {
