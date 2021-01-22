@@ -11,7 +11,7 @@ router.get('/',withAuth, (req, res) => {
         attributes: [
             'id',
             'title',
-            // 'text',
+            'content',
             'created_at'
         ],
         include: [
@@ -44,7 +44,7 @@ router.get('/edit/:id', withAuth, (req,res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'text', 'title', 'created_at'],
+        attributes: ['id', 'content', 'title', 'created_at'],
         include: [
             {
                 model: Comment,

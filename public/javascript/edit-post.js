@@ -8,9 +8,11 @@ const id = window.location.toString().split('/')[
     window.location.toString().split('/').length -1
 ];
 
+console.log(title,content,'im the id')
 const response = await fetch(`/api/posts/${id}`,{
 method: 'PUT',
 body: JSON.stringify({
+    
     title,
     content
 }),
@@ -18,6 +20,9 @@ headers: {
 'Content-Type': 'application/json'
 }
 });
+
+
+
 
 if (response.ok) {
     document.location.replace('/dashboard');

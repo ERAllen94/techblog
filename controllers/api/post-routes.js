@@ -5,8 +5,8 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     Post.findAll({
-        attributes: ['id', 'text', 'title', 'created_at'],
-        order: [['created_at', SESC]],
+        attributes: ['id', 'content', 'title', 'created_at'],
+        order: [['created_at', DESC]],
         include: [
             {
                 model: Comment,
@@ -35,7 +35,7 @@ router.get('/id', (req,res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'text', 'title', 'created_at'],
+        attributes: ['id', 'content', 'title', 'created_at'],
         include: [
             {
                 model: Comment,
@@ -65,27 +65,28 @@ router.get('/id', (req,res) => {
 });
 
 router.post('/', withAuth, (req,res) => {
+    console.log(req.body,'im here')
     Post.create({
         title: req.body.title,
-        text: req.body.text,
+        content: req.body.text,
         user_id: req.session.user_id
     })
     .then(data => res.json(data)
     .catch(err => {
-        console.log(err);
         res.status(500).json(err);
     }));
 });
 
-router.put('/id', withAuth, (req,res) => {
+router.put('/:id', withAuth, (req,res) => {
     Post.update(
         {
             title: req.body.title,
-            text: req.body.text
+            content: req.body.content,
+
         },
         {
             where: {
-                id: req.params.id
+            id: req.params.id
             }
         }
     )
@@ -102,7 +103,8 @@ router.put('/id', withAuth, (req,res) => {
     });
 });
 
-router.delete('/id', withAuth, (req,res) => {
+router.delete('/:id', withAuth, (req,res) => {
+    console.log('hello')
     Post.destroy({
         where: {
             id: req.params.id

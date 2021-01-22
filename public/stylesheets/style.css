@@ -2,12 +2,19 @@
     box-sizing: border-box;
 }
 
+body {
+    background: #544a7d;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #ffd452, #544a7d);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #ffd452, #544a7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
 body, html {
     height: 100%;
     padding: 0;
     margin: 0;
     font-family: sans-serif;
-    color: #333;
+    color:black;
 
 }
 
@@ -131,21 +138,12 @@ btn-no-style:hover{
 .post .title span{
     font-style:italic;
     font-size: 90%;
-    color: #7d7d7d;
+    color: black;
 }
 
 .edit-link {
     display: block;
     margin: -1.5% 0 2% 0;
-}
-
-.upvote-btn {
-    background-color: #197d0f;
-    transition: background-color .1s
-}
-
-.upvote-btn:hover {
-    background-color: #1f9c13;
 }
 
 .comment-form {
